@@ -1,10 +1,10 @@
-{
+on{
   "compilerOptions": {
     "target": "es2017",
     "allowSyntheticDefaultImports": false,
     "baseUrl": "./",
     "paths": {
-      "@components/*": ["app/common/*"],
+      "@common/*": ["app/common/*"],
       "@routes/*": ["app/routes/*"],
       "@utils/*": ["app/utils/*"],
       "@store/*": ["app/store/*"],
