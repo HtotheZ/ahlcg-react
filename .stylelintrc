@@ -4,6 +4,9 @@
     "stylelint-order"
   ],
   "rules": {
+    "at-rule-no-unknown": [true, {
+      ignoreAtRules: ["function", "if", "mixin", "include", "each"]
+    }],
     "order/properties-order": [
       {
         properties: [
