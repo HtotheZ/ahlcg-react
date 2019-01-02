@@ -1,7 +1,27 @@
 require('dotenv').config();
 const withSass = require('@zeit/next-sass');
 const withCss = require('@zeit/next-css');
-const commonsChunkConfig = require('@zeit/next-css/commons-chunk-config');
+
+// commonsChunkConfig workaround
+// https://github.com/zeit/next-plugins/issues/157#issuecomment-385885772
+const commonsChunkConfig = (config, test = /\.css$/) => {
+  config.plugins = config.plugins.map((plugin) => {
+    if (
+      plugin.constructor.name === 'CommonsChunkPlugin'
+      && plugin.minChunks != null
+    ) {
+      const defaultMinChunks = plugin.minChunks;
+      plugin.minChunks = (module, count) => {
+        if (module.resource && module.resource.match(test)) {
+          return true;
+        }
+        return defaultMinChunks(module, count);
+      };
+    }
+    return plugin;
+  });
+  return config;
+};
 
 module.exports = withCss(withSass({
   webpack: (config, { isServer }) => {
