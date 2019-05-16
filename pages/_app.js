@@ -1,5 +1,6 @@
 import React from 'react';
 import App, { Container } from 'next/app';
+// eslint-disable-next-line no-unused-vars
 import Router from 'next/router';
 import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
@@ -13,23 +14,29 @@ import request from '@utils/request';
 import Layout from '@common/containers/Layout';
 
 class MyApp extends App {
-  static async getInitialProps({ Component, ctx }) {
+  static async getInitialProps({
+    Component,
+    ctx,
+  }) {
     const {
       req,
-      res,
+      res, // eslint-disable-line no-unused-vars
       isServer,
       store,
     } = ctx;
 
     if (req && isServer) {
       let token = null;
+
       if (req.headers.cookie) {
         const cookies = cookie.parse(req.headers.cookie);
+
         token = cookies.token || null;
       }
 
       if (token) {
         request.setAuthHeader(token);
+
         try {
           await store.dispatch(getMe());
         } catch (error) {

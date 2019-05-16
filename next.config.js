@@ -7,30 +7,34 @@ const withCss = require('@zeit/next-css');
 const commonsChunkConfig = (config, test = /\.css$/) => {
   config.plugins = config.plugins.map((plugin) => {
     if (
-      plugin.constructor.name === 'CommonsChunkPlugin'
-      && plugin.minChunks != null
+      plugin.constructor.name === 'CommonsChunkPlugin' &&
+      plugin.minChunks != null
     ) {
       const defaultMinChunks = plugin.minChunks;
+
       plugin.minChunks = (module, count) => {
         if (module.resource && module.resource.match(test)) {
           return true;
         }
+
         return defaultMinChunks(module, count);
       };
     }
+
     return plugin;
   });
+
   return config;
 };
 
 module.exports = withCss(withSass({
   webpack: (config, { isServer }) => {
-
     if (!isServer) {
       config = commonsChunkConfig(config, /\.(sass|scss|css)$/);
     }
 
     const originalEntry = config.entry;
+
     config.entry = async () => {
       const entries = await originalEntry();
 

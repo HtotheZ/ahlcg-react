@@ -3,5 +3,5 @@
 /public
 /scripts
 /src/registerServiceWorker.js
-
-jest.config.js
+next.config.js
+postcss.config.js

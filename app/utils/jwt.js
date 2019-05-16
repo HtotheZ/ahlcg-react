@@ -12,7 +12,10 @@ export function tokenExpired(token) {
 export function tokenCloseToExpiry(token) {
   if (!token) return false;
 
-  const { exp, orig_iat } = jwtDecode(token);
+  const {
+    exp,
+    orig_iat,
+  } = jwtDecode(token);
 
   return (
     (exp - orig_iat) / 2 > exp - Math.floor(Date.now() / 1000) &&

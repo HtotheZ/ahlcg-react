@@ -13,8 +13,8 @@ const getMeRequest = () => ({
 });
 
 const getMeSuccess = payload => ({
-  type: GET_ME_SUCCESS,
   payload,
+  type: GET_ME_SUCCESS,
 });
 
 const getMeFailure = () => ({

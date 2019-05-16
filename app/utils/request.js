@@ -1,15 +1,15 @@
 import getConfig from 'next/config';
 import axios from 'axios';
 import {
-  toSnakeCase,
   toCamelCase,
+  toSnakeCase,
 } from 'case-converter';
 
 import {
+  clearToken,
   getToken,
   setToken,
   tokenCloseToExpiry,
-  clearToken,
 } from '@utils/jwt';
 
 const { BACKEND_URL } = getConfig().publicRuntimeConfig;

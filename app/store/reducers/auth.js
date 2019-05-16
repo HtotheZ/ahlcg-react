@@ -1,10 +1,10 @@
 import {
-  LOGIN_REQUEST,
-  LOGIN_SUCCESS,
-  LOGIN_FAILURE,
+  GET_ME_FAILURE,
   GET_ME_REQUEST,
   GET_ME_SUCCESS,
-  GET_ME_FAILURE,
+  LOGIN_FAILURE,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
   LOGOUT_USER,
 } from '@actions/auth';
 
@@ -24,8 +24,8 @@ export default (state = initialState, action) => {
     case GET_ME_SUCCESS:
       return {
         ...state,
-        me: action.payload,
         isFetching: false,
+        me: action.payload,
       };
     case LOGIN_SUCCESS:
     case LOGIN_FAILURE:

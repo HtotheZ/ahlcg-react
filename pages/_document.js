@@ -16,7 +16,7 @@ export default class MyDocument extends Document {
     return (
       <html lang="en">
         <Head>
-          <link rel="stylesheet" href="/_next/static/style.css" />
+          <title key="title">Merix nextjs boilerplate</title>
         </Head>
         <body>
           <Main />
